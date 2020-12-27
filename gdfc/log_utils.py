@@ -38,6 +38,10 @@ def set_log_conf() -> None:
                     "level": "INFO",
                     "propagate": False,
                 },
+                "googleapiclient.discovery_cache": {
+                    "level": "ERROR",
+                    "propagate": False,
+                }
             },
         }
     )

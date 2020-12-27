@@ -13,7 +13,7 @@ app = typer.Typer()
 @log_setup
 def copy(
     source_folder_name: str,
-    target_folder_parent_name: str = "root",
+    target_folder_parent_name: str = typer.Argument("root"),
     target_folder_name: Optional[str] = None,
     auth_folder_path: Path = typer.Option(
         Path.cwd(),
