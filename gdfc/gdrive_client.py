@@ -51,14 +51,14 @@ class GDriveClient:
 
     def _copy_single_file(self, file_id: str, target_file_name: str, parent_target_folder_id: str = "root"):
         logger.info(f"Copying file \"{file_id}\" as \"{target_file_name}\" to \"{parent_target_folder_id}\"")
-        body = {"parents": [{"kind": "drive#fileLink", "id": parent_target_folder_id}], 'name': target_file_name}
+        body = {"parents": [parent_target_folder_id], 'name': target_file_name}
         self._service.files().copy(fileId=file_id, body=body).execute()
 
     def _create_folder(self, target_folder_name: str, parent_target_folder_id: str = "root"):
         logger.info(f"Create folder \"{target_folder_name}\" at \"{parent_target_folder_id}\"")
 
         body = {
-            "parents": [{"kind": "drive#fileLink", "id": parent_target_folder_id}],
+            "parents": [parent_target_folder_id],
             'name': target_folder_name,
             "mimeType": FOLDER_MIME_TYPE
         }
