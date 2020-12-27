@@ -5,8 +5,7 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 
-# If modifying these scopes, delete the file token.pickle.
-SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly']
+SCOPES = ['https://www.googleapis.com/auth/drive']
 
 
 def get_fresh_auth_token(auth_folder_path: Path) -> Credentials:
@@ -37,8 +36,8 @@ def get_and_save_auth_token(auth_folder_path: Path):
     else:
         creds = get_valid_auth_token(auth_folder_path=auth_folder_path, creds=creds)
 
-        # Save the credentials for the next run
-        with open('token.pickle', 'wb') as token:
-            pickle.dump(obj=creds, file=token)
+    # Save the credentials for the next run
+    with open('token.pickle', 'wb') as token:
+        pickle.dump(obj=creds, file=token)
 
     return creds
